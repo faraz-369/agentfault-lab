@@ -1,0 +1,16 @@
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.ruff_cache/
+.venv/
+venv/
+.env
+*.db
+*.sqlite*
+dist/
+build/
+*.egg-info/
+results/*
+!results/README.md
+!results/agentfault-baseline-v1_summary.json
+!results/agentfault-baseline-v1_runs.jsonl

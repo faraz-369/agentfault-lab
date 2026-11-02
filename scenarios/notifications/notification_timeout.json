@@ -1,0 +1,54 @@
+{
+  "scenario_id": "notification_timeout",
+  "name": "Notification tool timeout",
+  "description": "A transient timeout occurs before the notification operation is executed.",
+  "task": "Send one notification and mark the task complete.",
+  "initial_state": {
+    "actions": [
+      {
+        "tool": "send_notification",
+        "args": {
+          "operation_id": "notification-42"
+        }
+      },
+      {
+        "tool": "mark_complete",
+        "args": {}
+      }
+    ],
+    "expected_final_state": {
+      "completed": true
+    }
+  },
+  "fault": {
+    "fault_id": "notification-timeout",
+    "kind": "timeout",
+    "tool_name": "send_notification",
+    "trigger_call_number": 1,
+    "message": "simulated timeout before tool execution",
+    "repeat": false
+  },
+  "invariants": [
+    {
+      "invariant_id": "unique-notification",
+      "description": "A notification operation must not be recorded twice.",
+      "kind": "unique_operation",
+      "params": {}
+    },
+    {
+      "invariant_id": "completed-final-state",
+      "description": "Successful execution must end in completed state.",
+      "kind": "no_false_completion",
+      "params": {
+        "required_state_field": "completed",
+        "equals": true
+      }
+    }
+  ],
+  "max_steps": 5,
+  "max_tool_calls": 20,
+  "tags": [
+    "timeout",
+    "retry"
+  ]
+}

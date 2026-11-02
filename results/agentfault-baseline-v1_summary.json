@@ -1,0 +1,40 @@
+{
+  "experiment_id": "agentfault-baseline-v1",
+  "methodology_note": "Results describe the included scenarios and configuration only; they do not establish production-wide agent reliability.",
+  "runs": 45,
+  "by_policy": {
+    "none": {
+      "runs": 15,
+      "successes": 0,
+      "success_rate": 0.0,
+      "fault_injection_rate": 1.0,
+      "invariant_violation_rate": 0.0,
+      "mean_tool_calls": 1.6666666666666667,
+      "mean_retries": 0.0,
+      "median_duration_ms": 0.14950009062886238,
+      "total_invariant_violations": 0
+    },
+    "retry": {
+      "runs": 15,
+      "successes": 15,
+      "success_rate": 1.0,
+      "fault_injection_rate": 1.0,
+      "invariant_violation_rate": 0.3333333333333333,
+      "mean_tool_calls": 4.0,
+      "mean_retries": 1.0,
+      "median_duration_ms": 0.2772000152617693,
+      "total_invariant_violations": 5
+    },
+    "state_aware": {
+      "runs": 15,
+      "successes": 15,
+      "success_rate": 1.0,
+      "fault_injection_rate": 1.0,
+      "invariant_violation_rate": 0.0,
+      "mean_tool_calls": 3.6666666666666665,
+      "mean_retries": 1.0,
+      "median_duration_ms": 0.26040012016892433,
+      "total_invariant_violations": 0
+    }
+  }
+}

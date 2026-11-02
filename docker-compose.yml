@@ -1,0 +1,8 @@
+services:
+  agentfault-api:
+    build: .
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./results:/app/results
+      - ./scenarios:/app/scenarios:ro

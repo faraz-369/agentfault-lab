@@ -1,0 +1,60 @@
+{
+  "scenario_id": "malformed_transform",
+  "name": "Malformed data transformation result",
+  "description": "A transformation tool returns an invalid response; the agent should not accept malformed output.",
+  "task": "Read a file, transform its contents, and mark the workflow complete.",
+  "initial_state": {
+    "files": {
+      "input.txt": "alpha,beta,gamma"
+    },
+    "actions": [
+      {
+        "tool": "read_file",
+        "args": {
+          "path": "input.txt"
+        }
+      },
+      {
+        "tool": "transform_data",
+        "args": {
+          "payload": {
+            "source": "input.txt",
+            "schema": "list[str]"
+          }
+        }
+      },
+      {
+        "tool": "mark_complete",
+        "args": {}
+      }
+    ],
+    "expected_final_state": {
+      "completed": true
+    }
+  },
+  "fault": {
+    "fault_id": "malformed-transform",
+    "kind": "malformed",
+    "tool_name": "transform_data",
+    "trigger_call_number": 1,
+    "message": "missing transformed payload",
+    "repeat": false
+  },
+  "invariants": [
+    {
+      "invariant_id": "completed-final-state",
+      "description": "Successful execution must end in completed state.",
+      "kind": "no_false_completion",
+      "params": {
+        "required_state_field": "completed",
+        "equals": true
+      }
+    }
+  ],
+  "max_steps": 5,
+  "max_tool_calls": 20,
+  "tags": [
+    "malformed-output",
+    "validation"
+  ]
+}
